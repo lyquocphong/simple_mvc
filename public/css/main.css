@@ -1,0 +1,8 @@
+span.error_msg{    
+    display:none;
+}
+
+span.error_msg.show{
+    color: red;
+    display:inline-block;
+}

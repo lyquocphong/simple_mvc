@@ -1,0 +1,19 @@
+{
+    "name": "phongly/mvc",
+    "description": "Simple MVC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Core\\":"core",
+            "App\\":"app",
+            "Config\\":"config"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ly Quoc Phong",
+            "email": "lyquocphong@gmail.com"
+        }
+    ],
+    "require": {}
+}
