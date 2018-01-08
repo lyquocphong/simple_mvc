@@ -1,17 +1,28 @@
 <?php
 
+/**
+ * This is base class for Application
+ */
+
 namespace Core;
 
 class Application{
     
-    private $action = null;
-
-    private $original_url = null;
-
+    /**
+     * Config value
+     */
     public $config = array();
 
+    /**
+     * Instance of application
+     */
     public static $instance = null;
 
+    /**
+     * Constructor
+     * 
+     * @return void
+     */
     public function __construct($url,$config)
     {
         static::$instance = $this;
@@ -23,6 +34,11 @@ class Application{
         $this->dispatchUrl($url);        
     }
 
+    /**
+     * Get defaut config for application
+     * 
+     * @return array
+     */
     private function getDefaultConfig()
     {
         $default = array(
@@ -42,11 +58,21 @@ class Application{
         return $default;
     }    
 
+    /**
+     * Some kind of helper to make url
+     * 
+     * @return string
+     */
     public function makeUrl($path)
     {
         return $this->getBaseUrl().$path;
     }
 
+    /**
+     * Get application base url
+     * 
+     * @return string
+     */
     public function getBaseUrl() 
     {
         // output: /myproject/index.php
@@ -65,11 +91,21 @@ class Application{
         return $protocol.$hostName.$pathInfo['dirname']."/";
     }
 
+    /**
+     * Init config for application
+     * 
+     * @return void
+     */
     private function initConfig($config)
     {
         $this->config = array_replace_recursive($this->getDefaultConfig(),$config);
     }
 
+    /**
+     * Dispatch url to handle
+     * 
+     * @return void
+     */
     private function dispatchUrl($url)
     {
         $paths = explode('/',$url);
@@ -110,10 +146,5 @@ class Application{
         }
 
         call_user_func_array(array($this->controller, $function_name), $paths);
-    }
-
-    public function getInput()
-    {
-        //if(isset())
     }
 }
